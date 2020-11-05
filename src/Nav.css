@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 3vh;
+  background: white;
+  color: green;
+  font-size: 1.5em;
+}
+
+.nav-links {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  text-decoration: none;
+}
+
+.nav-item {
+  color: green;
+  text-transform: uppercase;
+}
+
+.nav-item:hover {
+  color: rgb(86, 219, 130);
+}

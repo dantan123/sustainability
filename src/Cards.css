@@ -1,0 +1,44 @@
+.cards {
+  background: rgb(240, 250, 245);
+  padding: 0.5em;
+}
+
+.card {
+  transition: all .2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.1)
+}
+
+#quiz-header {
+  text-align: center;
+  font-size: 3em;
+  color: rgb(72, 125, 100);
+  margin-bottom: 1em;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2em;
+  grid-auto-rows: minmax(150px, auto);
+  align-items: center;
+  margin: 1em;
+  margin-top: 0;
+  margin-left: 3em;
+  padding-left: 1em;
+}
+
+.container > div {
+  width: 80%;
+  height: 80%;
+  background: #ddd;
+  color: green;
+  text-align: center;
+  padding: 1em;
+}
+
+.container > div:nth-child(odd) {
+  background: rgb(145, 237, 205)
+}
