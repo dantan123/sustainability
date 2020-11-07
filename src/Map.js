@@ -12,7 +12,7 @@ function Map(props) {
     const localCoordinates = feature.geometry.coordinates
     for (var i = 0; i < localCoordinates.length; i++) {
       // massaging the data; the input data have inconsistent array shapes
-      if (localCoordinates[i][0].length == 2 || localCoordinates[i][1].length == 2) {
+      if (localCoordinates[i][0].length === 2 || localCoordinates[i][1].length === 2) {
         heatMapData.push(new window.google.maps.LatLng(localCoordinates[i][0][1], localCoordinates[i][0][0]))
         heatMapData.push(new window.google.maps.LatLng(localCoordinates[i][1][1], localCoordinates[i][1][0]))
       }
