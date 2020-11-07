@@ -24,10 +24,11 @@
   grid-gap: 2em;
   grid-auto-rows: minmax(150px, auto);
   align-items: center;
-  margin: 1em;
   margin-top: 0;
-  margin-left: 3em;
-  padding-left: 1em;
+  margin-bottom: 1em;
+  margin-left: 5em;
+  margin-right: 5em;
+  padding-left: 2em;
 }
 
 .container > div {
@@ -40,5 +41,5 @@
 }
 
 .container > div:nth-child(odd) {
-  background: rgb(145, 237, 205)
+  background: rgb(105, 205, 245)
 }

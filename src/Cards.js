@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactCardFlip from 'react-card-flip'
 import Data from './data/questions.json'
 import './Cards.css'
@@ -20,13 +20,25 @@ const Card = ({item}) => {
 }
 
 const Cards = () => {
+  const [score, setScore] = useState(0)
+  const [card, setCard] = useState(null)
+  const [clickedCards, setClickedCards] = useState([])
+
+  const handleScore = () => {
+    if (clickedCards.includes(card) == false) {
+      setScore(score+1)
+    }
+  }
+
   return (
     <div className="cards">
       <h1 id="quiz-header"> Sustainability Quiz </h1>
-      <div className="container">
-        {Data.map((item, index) => (
-          <Card item={item} />
-        ))}
+      <div className="container" onClick={handleScore}>
+        {
+          Data.map((item, index) => (
+            <Card key={index} item={item}/>
+          ))
+        }
       </div>
     </div>
   )
