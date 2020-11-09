@@ -1,0 +1,18 @@
+.weatherContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: rgb(240, 250, 245);
+}
+
+.weatherHeading {
+  margin-left: 25%;
+  font-size: 3em;
+  color: rgb(72, 125, 100);
+}
+
+.formPicker {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}

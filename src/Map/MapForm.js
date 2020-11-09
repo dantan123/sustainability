@@ -36,7 +36,7 @@ class MapForm extends Component {
                 name="isPark"
                 checked={this.state.isPark}
                 onClick={this.handleClick}
-              /> All Metro Parks
+              /> Metro Parks
               </span>
             </div>
 
