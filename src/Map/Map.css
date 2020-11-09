@@ -32,7 +32,7 @@ input[type="checkbox"] {
 input[type="checkbox"] {
   width: 2.5em;
   height: 2.5em;
-  border: 2px solid ;
+  border: 2px solid rgb(86, 219, 130);
   border-radius: 30px;
   color: green;
   top: 10px;
