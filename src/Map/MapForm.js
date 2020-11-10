@@ -24,7 +24,7 @@ class MapForm extends Component {
   // https://developer.mozilla.org/en-US/docs/Learn/Forms/Advanced_form_styling#Check_boxes_and_radio_buttons
   render() {
     return (
-      <div className='sus-map'>
+      <div className='mapContainer'>
         <h1 className="heading"> Vancouver Sustainability Map </h1>
           <form>
             <div className="form">
@@ -84,7 +84,7 @@ class MapForm extends Component {
 
         <br />
 
-        <div className="map-style">
+        <div className="map">
           <WrappedMap
             googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization,geometry,drawing,places&key=AIzaSyBhxM-oXeYrmPjjRkr5I6HbrH-7gPYU-l0`}
             loadingElement={<div style={{ height: `100%` }} />}

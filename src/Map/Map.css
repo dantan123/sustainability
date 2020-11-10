@@ -1,4 +1,4 @@
-.sus-map {
+.mapContainer {
   background: rgb(240, 250, 245);
   padding-top: 0.3em;
 }
@@ -21,7 +21,8 @@
 }
 
 .form-group {
-  margin-bottom: 1em;
+  margin-bottom: 3%;
+  width: 100%;
 }
 
 input[type="checkbox"] {
@@ -50,7 +51,7 @@ input[type="checkbox"]:checked::before {
   visibility: visible;
 }
 
-.map-style {
+.map {
   width: 70vw;
   height: 80vh;
   padding-left: 15vw;

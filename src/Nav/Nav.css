@@ -9,17 +9,17 @@ nav {
 }
 
 .nav-links {
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  text-decoration: none;
 }
 
 .nav-item {
   color: green;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .nav-item:hover {

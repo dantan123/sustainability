@@ -7,14 +7,14 @@ function Nav() {
     <nav>
       <img src="green.png" alt="" width="110px" height="110px"/>
       <ul className="nav-links">
-        <Link to='/'>
-          <li className="nav-item">Quiz</li>
+        <Link to='/' className="nav-item">
+          <li>Quiz</li>
         </Link>
-        <Link to='/map'>
-          <li className="nav-item">Map</li>
+        <Link to='/map' className="nav-item">
+          <li>Map</li>
         </Link>
-        <Link to='/weather'>
-          <li className="nav-item">Weather</li>
+        <Link to='/weather' className="nav-item">
+          <li>Weather</li>
         </Link>
       </ul>
     </nav>
