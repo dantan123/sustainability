@@ -8,6 +8,11 @@ nav {
   font-size: 1.5em;
 }
 
+.navLogo {
+  width: 4.5em;
+  height: 4.5em;
+}
+
 .nav-links {
   width: 40%;
   display: flex;
@@ -24,4 +29,15 @@ nav {
 
 .nav-item:hover {
   color: rgb(86, 219, 130);
+}
+
+@media (max-width: 770px) {
+  nav {
+    font-size: 1em;
+    min-height: 2vh;
+  }
+
+  .nav-links {
+    width: 50%;
+  }
 }

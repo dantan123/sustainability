@@ -5,7 +5,7 @@ import './Nav.css'
 function Nav() {
   return (
     <nav>
-      <img src="green.png" alt="" width="110px" height="110px"/>
+      <img src="green.png" alt="" className="navLogo"/>
       <ul className="nav-links">
         <Link to='/' className="nav-item">
           <li>Quiz</li>

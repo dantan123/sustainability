@@ -57,3 +57,33 @@ input[type="checkbox"]:checked::before {
   padding-left: 15vw;
   padding-bottom: 5vh;
 }
+
+@media (max-width: 770px) {
+  .heading {
+    font-size: 2em;
+  }
+
+  .form {
+    font-size: 0.8em;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  input[type="checkbox"] {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  input[type="checkbox"]::before {
+    font-size: 1em;
+  }
+
+  .map {
+    width: 70vw;
+    height: 40vh;
+    padding-left: 15vw;
+    padding-bottom: 5vh;
+  }
+}

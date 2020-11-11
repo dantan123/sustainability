@@ -42,3 +42,23 @@
 .container > div:nth-child(odd) {
   background: rgb(105, 205, 245)
 }
+
+@media (max-width: 770px) {
+  #quiz-header {
+    font-size: 2em;
+  }
+
+  .container {
+    grid-auto-rows: minmax(50px, auto);
+    grid-template-columns: repeat(2, 1fr);
+    margin: 2%;
+    font-size: 0.7em;
+    padding-left: 1em;
+  }
+
+  .container > div {
+    width: 70%;
+    height: 70%;
+    padding: 10%;
+  }
+}
