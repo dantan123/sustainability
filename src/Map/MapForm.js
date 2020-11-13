@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {WrappedMap} from './Map'
+import {MapCards} from './MapCards'
 import './Map.css'
 
 class MapForm extends Component {
@@ -24,11 +25,14 @@ class MapForm extends Component {
   // https://developer.mozilla.org/en-US/docs/Learn/Forms/Advanced_form_styling#Check_boxes_and_radio_buttons
   render() {
     return (
-      <div className='mapContainer'>
-        <h1 className="heading"> Vancouver Sustainability Map </h1>
-          <form>
-            <div className="form">
+        <div className='mapContainer'>
 
+          <h1 className="heading"> Sustainability Features </h1>
+          <MapCards className='mapCards'/>
+          <br/>
+
+          <h1 className="heading"> Map </h1>
+          <form className="form">
             <div className="form-group">
               <span>
               <input
@@ -49,7 +53,7 @@ class MapForm extends Component {
                 name="isBike"
                 checked={this.state.isBike}
                 onClick={this.handleClick}
-              /> Bike Lane Heat Map
+              /> Bike Lanes
               </span>
             </div>
 
@@ -78,8 +82,6 @@ class MapForm extends Component {
                 /> Traffic Layer
                 </span>
               </div>
-
-            </div>
           </form>
 
         <br />

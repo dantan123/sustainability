@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",
+    "classnames": "^2.2.6",
     "react": "^17.0.1",
     "react-card-flip": "^1.0.11",
     "react-chartjs-2": "^2.11.1",
