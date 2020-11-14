@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom' //might use it
-import MapForm from './Map/MapForm'
+import Map from './Map/MapIndex'
 import Cards from './Cards/Cards'
 import Nav from './Nav/Nav'
 import Weather from './Weather/Weather'
@@ -13,7 +13,7 @@ function App() {
         <Nav />
         <Switch>
             <Route path='/' exact component={Cards}/>
-            <Route path='/map' exact component={MapForm}/>
+            <Route path='/map' exact component={Map}/>
             <Route path='/weather' exact component={Weather}/>
         </Switch>
       </div>

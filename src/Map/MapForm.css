@@ -1,0 +1,67 @@
+.form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 1em;
+  margin-left: 15vw;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(86, 219, 130);
+}
+
+.form-group {
+  margin-bottom: 3%;
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="checkbox"] {
+  width: 2.5em;
+  height: 2.5em;
+  border: 2px solid rgb(86, 219, 130);
+  border-radius: 30px;
+  color: green;
+  top: 10px;
+  right: 2px;
+}
+
+input[type="checkbox"]::before {
+  content: "✔";
+  font-size: 2em;
+  visibility: hidden;
+  color: rgb(86, 219, 130);
+}
+
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}
+
+.map {
+  margin-top: 1em;
+  width: 66vw;
+  height: 60vh;
+  padding-left: 15vw;
+  padding-bottom: 5vh;
+}
+
+@media (max-width: 770px) {
+  .form {
+    font-size: 0.8em;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  input[type="checkbox"] {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  input[type="checkbox"]::before {
+    font-size: 1em;
+  }
+}

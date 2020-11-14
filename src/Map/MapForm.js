@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {WrappedMap} from './Map'
-import {MapCards} from './MapCards'
-import './Map.css'
+import './MapForm.css'
 
 class MapForm extends Component {
   constructor(props) {
@@ -25,69 +24,52 @@ class MapForm extends Component {
   // https://developer.mozilla.org/en-US/docs/Learn/Forms/Advanced_form_styling#Check_boxes_and_radio_buttons
   render() {
     return (
-        <div className='mapContainer'>
-
-          <h1 className="heading"> Sustainability Features </h1>
-          <p className="desc"> Sustainability comes in various forms, from maintaining parks
-          to biking a bit more often.</p>
-          <MapCards className='mapCards'/>
-          <br/>
-
-          <h1 className="heading"> Map </h1>
-          <form className="form">
-            <div className="form-group">
-              <span>
-              <input
-                type="checkbox"
-                name="isPark"
-                checked={this.state.isPark}
-                onClick={this.handleClick}
-              /> Metro Parks
-              </span>
-            </div>
-
-            <br />
-
-            <div className="form-group">
-              <span>
-              <input
-                type="checkbox"
-                name="isBike"
-                checked={this.state.isBike}
-                onClick={this.handleClick}
-              /> Bike Lanes
-              </span>
-            </div>
-
-            <br />
-
-            <div className="form-group">
-              <span>
-              <input
-                type="checkbox"
-                name="isBikeLayer"
-                checked={this.state.isBikeLayer}
-                onClick={this.handleClick}
-              /> Bike Lane Layer
-              </span>
-            </div>
-
-            <br />
-
-              <div className="form-group">
-                <span>
-                <input
-                  type="checkbox"
-                  name="isTrafficLayer"
-                  checked={this.state.isTrafficLayer}
-                  onClick={this.handleClick}
-                /> Traffic Layer
-                </span>
-              </div>
-          </form>
-
-        <br />
-
+      <div>
+        <form className="form">
+          <div className="form-group">
+            <span>
+            <input
+              type="checkbox"
+              name="isPark"
+              checked={this.state.isPark}
+              onClick={this.handleClick}
+            /> Metro Parks
+            </span>
+          </div>
+          <br />
+          <div className="form-group">
+            <span>
+            <input
+              type="checkbox"
+              name="isBike"
+              checked={this.state.isBike}
+              onClick={this.handleClick}
+            /> Bike Lanes
+            </span>
+          </div>
+          <br />
+          <div className="form-group">
+            <span>
+            <input
+              type="checkbox"
+              name="isBikeLayer"
+              checked={this.state.isBikeLayer}
+              onClick={this.handleClick}
+            /> Bike Lane Layer
+            </span>
+          </div>
+          <br />
+          <div className="form-group">
+            <span>
+            <input
+              type="checkbox"
+              name="isTrafficLayer"
+              checked={this.state.isTrafficLayer}
+              onClick={this.handleClick}
+            /> Traffic Layer
+            </span>
+          </div>
+        </form>
         <div className="map">
           <WrappedMap
             googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization,geometry,drawing,places&key=AIzaSyBhxM-oXeYrmPjjRkr5I6HbrH-7gPYU-l0`}
@@ -105,4 +87,4 @@ class MapForm extends Component {
   }
 }
 
-export default MapForm
+export default MapForm;
