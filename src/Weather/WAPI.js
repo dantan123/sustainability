@@ -4,8 +4,8 @@ const url = 'https://api.openweathermap.org/data/2.5/onecall?lat=49.2827&lon=-12
 
 export const fetchData = async () => {
   try {
-    const {data: {hourly, daily}} = await axios.get(url);
-    return {hourly, daily};
+    const {data: {hourly, daily, current}} = await axios.get(url);
+    return {hourly, daily, current};
   } catch (error) {
     return error;
   }

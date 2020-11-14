@@ -1,8 +1,10 @@
-import React, {Component} from 'react'
-import { NativeSelect, FormControl } from '@material-ui/core'
-import {fetchData} from './WAPI'
-import {Chart} from './WChart'
-import './Weather.css'
+import React, {Component} from 'react';
+import { NativeSelect, FormControl } from '@material-ui/core';
+import {fetchData} from './WAPI';
+import {LineChart} from './lineChart';
+import {BarChart} from './barChart';
+import {PieChart} from './pieChart';
+import './Weather.css';
 
 class Weather extends Component {
   state = {
@@ -26,15 +28,32 @@ class Weather extends Component {
   render() {
     const {data, option} = this.state
     return (
-      <div className="weatherContainer">
-        <h1 className="weatherHeading"> Vancouver Weather Forecast </h1>
-        <FormControl className="formPicker">
-          <NativeSelect defaultValue="" onChange = {this.handleChange}>
-            <option value="hourly"> Hourly (48 hrs) </option>
-            <option value="daily"> Daily (7 days) </option>
-          </NativeSelect>
-        </FormControl>
-        <Chart data={data} option={option}/>
+      <div className='page'>
+        <h1 className="weatherHeading"> Vancouver Weather </h1>
+
+        <div className="weatherContainer">
+
+          <div className='weatherForecast'>
+            <h2 className = 'chartHeading'> Current Weather Forecast </h2>
+            <FormControl className="formPicker">
+              <NativeSelect defaultValue="" onChange = {this.handleChange}>
+                <option value="hourly"> Hourly (48 hrs) </option>
+                <option value="daily"> Daily (7 days) </option>
+              </NativeSelect>
+            </FormControl>
+            <LineChart data={data} option={option} />
+          </div>
+
+          <div className='annualWeather'>
+            <h2 className='chartHeading'> Average Annual Weather </h2>
+            <BarChart />
+          </div>
+
+          <div className='weatherDistribution'>
+            <PieChart />
+          </div>
+        </div>
+
       </div>
     )
   }
