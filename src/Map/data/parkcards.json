@@ -1,0 +1,16 @@
+[
+  {
+    "imageFileName":"stanley-park.jpg",
+    "imageTitle": "Stanley",
+    "bodyHeader": "Parks",
+    "bodyContent": "Vancouver's parks are among some of the best",
+    "detail": "There are close to 200 metro parks"
+  },
+  {
+    "imageFileName":"biking.jpg",
+    "imageTitle": "Biking",
+    "bodyHeader": "Biking",
+    "bodyContent": "Biking is a wonderful sport",
+    "detail": "Check out the biking lanes and trails"
+  }
+]

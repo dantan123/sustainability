@@ -28,6 +28,8 @@ class MapForm extends Component {
         <div className='mapContainer'>
 
           <h1 className="heading"> Sustainability Features </h1>
+          <p className="desc"> Sustainability comes in various forms, from maintaining parks
+          to biking a bit more often.</p>
           <MapCards className='mapCards'/>
           <br/>
 

@@ -10,10 +10,18 @@
   margin-left: 15vw;
 }
 
+.desc {
+  color: rgb(2, 217, 99);
+  margin-left: 15vw;
+  font-size: 1.5em;
+  width: 70vw;
+  margin-top: 1em;
+}
+
 .form {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 1.5em;
+  margin-top: 1em;
   margin-left: 15vw;
   font-size: 1.5em;
   font-weight: bold;
