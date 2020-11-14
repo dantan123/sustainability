@@ -11,11 +11,11 @@
 }
 
 .desc {
-  color: rgb(2, 217, 99);
+  color: rgb(0, 255, 174);
   margin-left: 15vw;
   font-size: 1.5em;
   width: 70vw;
-  margin-top: 1em;
+  margin-top: 0;
 }
 
 @media (max-width: 770px) {

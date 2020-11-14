@@ -4,6 +4,7 @@ import HeatmapLayer from "react-google-maps/lib/components/visualization/Heatmap
 import { BicyclingLayer, TrafficLayer } from "react-google-maps"
 import * as parksData from './data/parks.json'
 import * as bikePathData from './data/bikeways.json'
+import mapStyles from './data/mapStyles';
 
 function Map(props) {
   const [selectedPark, setSelectedPark] = useState(null)
@@ -26,6 +27,7 @@ function Map(props) {
     <GoogleMap
       defaultZoom={10}
       defaultCenter={{lat: 49.282730, lng: -123.120735}} // Vancouver lat and lng
+      defaultOptions={{styles: mapStyles}}
     >
 
       {props.isPark ?

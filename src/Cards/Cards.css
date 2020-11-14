@@ -1,6 +1,7 @@
 .cards {
   background: rgb(240, 250, 245);
   padding: 0.5em;
+  opacity: 90%;
 }
 
 .card {
@@ -26,8 +27,8 @@
   align-items: center;
   margin-top: 0;
   margin-bottom: 1em;
-  margin-left: 8em;
-  margin-right: 8em;
+  margin-left: 10em;
+  margin-right: 10em;
 }
 
 .container > div {

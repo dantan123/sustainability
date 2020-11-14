@@ -2,16 +2,3 @@
   margin-left: 15vw;
   margin-top: 5vh;
 }
-
-.card {
-  margin-right: 10% !important;
-  height: 100% !important;
-}
-
-.parks {
-  border-bottom: 10px solid green;
-}
-
-.biking {
-  border-bottom: 10px solid blue;
-}
