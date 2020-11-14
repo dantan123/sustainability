@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import {Grid, Card, CardContent, CardMedia, CardActions, CardActionArea, Typography, Collapse, IconButton} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSlopeCardMediaStyles } from '@mui-treasury/styles/cardMedia/slope';
 import Color from 'color';
 import styles from './MapCards.module.css';
+import cx from 'clsx';
 import clsx from 'clsx';
 import CardData from './data/parkcards.json';
 
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase'
   },
   card: {
-    marginRight: '12%',
+    marginRight: '10%',
     marginTop: '1%',
     marginBottom: '5%',
     height: '100%',
@@ -50,6 +52,8 @@ const useStyles = makeStyles((theme) => ({
 
 const MapCard = ({item}) => {
   const classes = useStyles();
+  const mediaStyles = useSlopeCardMediaStyles();
+
   const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(prev => !prev);
@@ -59,11 +63,8 @@ const MapCard = ({item}) => {
     <Grid item component={Card} xs={5} md={4} className={classes.card}>
       <CardActionArea className={classes.actionArea}>
         <CardMedia
+          classes={mediaStyles}
           image={item.imageFileName}
-          title={item.imageTitle}
-          height="140"
-          alt=""
-          component="img"
         />
         <CardContent>
           <Typography className={classes.title} gutterBottom variant='h5' component='h2'>

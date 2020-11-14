@@ -9,7 +9,7 @@ function MapIndex() {
       <h1 className="heading"> Sustainability Features </h1>
       <MapCards className='mapCards'/>
       <br/>
-      <h1 className="heading"> Map </h1>
+      <h1 className="heading"> Sustainability Map </h1>
       <MapForm />
       <br />
     </div>
