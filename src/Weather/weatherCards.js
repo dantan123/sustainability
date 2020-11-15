@@ -1,7 +1,8 @@
 import React from 'react'
 import {Grid, Card, CardContent, CardMedia, CardActions, CardActionArea, Typography, Collapse, IconButton} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Data from './data/weatherCards.json'
+import Data from './data/weatherCards.json';
+import CountUp from 'react-countup';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -35,7 +36,13 @@ export const WeatherCards = ({ data : {current} }) => {
         />
           <CardContent>
             <Typography color='h2' gutterBottom> Temperature </Typography>
-            <Typography variant='h5'> {current.temp} </Typography>
+            <Typography variant='h5'>
+              <CountUp
+                start={0}
+                end={current.temp}
+                duration={3}
+                />
+             </Typography>
           </CardContent>
       </Grid>
       <Grid item component={Card} xs={5} md={2} className={classes.card}>
@@ -46,7 +53,13 @@ export const WeatherCards = ({ data : {current} }) => {
         />
         <CardContent>
           <Typography color='h2' gutterBottom> Humidity </Typography>
-          <Typography variant='h5'> {current.humidity} </Typography>
+          <Typography variant='h5'>
+            <CountUp
+              start={0}
+              end={current.humidity}
+              duration={3}
+              />
+          </Typography>
         </CardContent>
       </Grid>
       <Grid item component={Card} xs={5} md={2} className={classes.card}>
@@ -57,7 +70,13 @@ export const WeatherCards = ({ data : {current} }) => {
         />
         <CardContent>
           <Typography color='h2' gutterBottom> Wind Speed </Typography>
-          <Typography variant='h5'> {current.wind_speed} </Typography>
+          <Typography variant='h5'>
+            <CountUp
+              start={0}
+              end={current.wind_speed}
+              duration={3}
+              />
+          </Typography>
         </CardContent>
       </Grid>
       <Grid item component={Card} xs={5} md={2} className={classes.card}>
@@ -68,7 +87,13 @@ export const WeatherCards = ({ data : {current} }) => {
         />
         <CardContent>
           <Typography color='h2' gutterBottom> Pressure </Typography>
-          <Typography variant='h5'> {current.pressure} </Typography>
+          <Typography variant='h5'>
+            <CountUp
+              start={0}
+              end={current.pressure}
+              duration={3}
+              />
+         </Typography>
         </CardContent>
       </Grid>
     </Grid>
