@@ -5,12 +5,12 @@ import Data from './data/weatherCards.json'
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    marginLeft: '8%',
+    paddingLeft: '7%'
   },
   card: {
     marginTop: '3%',
     marginBottom: '5%',
-    marginLeft: '3%',
+    marginLeft: '5%',
     borderBottom: '10px solid green',
     borderRadius: 16,
     transition: "0.3s",
@@ -26,7 +26,7 @@ export const WeatherCards = ({ data : {current} }) => {
 
   if (current) {
     return (
-    <Grid container spacing={5} justify='start' className={classes.container}>
+    <Grid container spacing={2} justify='start' className={classes.container}>
       <Grid item component={Card} xs={5} md={2} className={classes.card}>
         <CardMedia
           component='img'
