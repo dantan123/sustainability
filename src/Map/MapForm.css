@@ -1,7 +1,6 @@
 .form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: 1.5em;
+  grid-template-columns: repeat(8, 1fr);
   margin-left: 15vw;
   font-size: 1.5em;
   font-weight: bold;
@@ -10,7 +9,6 @@
 
 .form-group {
   margin-bottom: 3%;
-  width: 100%;
 }
 
 input[type="checkbox"] {
@@ -41,8 +39,8 @@ input[type="checkbox"]:checked::before {
 
 .map {
   margin-top: 1.5em;
-  width: 67vw;
-  height: 67vh;
+  width: 72vw;
+  height: 75vh;
   padding-left: 15vw;
   padding-bottom: 5vh;
 }

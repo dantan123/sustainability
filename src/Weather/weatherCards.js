@@ -4,11 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Data from './data/weatherCards.json'
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    marginLeft: '8%',
+  },
   card: {
     marginTop: '3%',
     marginBottom: '5%',
-    marginLeft: '7%',
-    maxWidth: 300,
+    marginLeft: '3%',
+    borderBottom: '10px solid green',
+    borderRadius: 16,
     transition: "0.3s",
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     "&:hover": {
@@ -22,7 +26,7 @@ export const WeatherCards = ({ data : {current} }) => {
 
   if (current) {
     return (
-    <Grid container spacing={3} justify='start'>
+    <Grid container spacing={5} justify='start' className={classes.container}>
       <Grid item component={Card} xs={5} md={2} className={classes.card}>
         <CardMedia
           component='img'
@@ -30,7 +34,7 @@ export const WeatherCards = ({ data : {current} }) => {
           height='120'
         />
           <CardContent>
-            <Typography color='textSecondary' gutterBottom> Current Temperature </Typography>
+            <Typography color='h2' gutterBottom> Temperature </Typography>
             <Typography variant='h5'> {current.temp} </Typography>
           </CardContent>
       </Grid>
@@ -41,7 +45,7 @@ export const WeatherCards = ({ data : {current} }) => {
           height='120'
         />
         <CardContent>
-          <Typography color='textSecondary' gutterBottom> Current Humidity </Typography>
+          <Typography color='h2' gutterBottom> Humidity </Typography>
           <Typography variant='h5'> {current.humidity} </Typography>
         </CardContent>
       </Grid>
@@ -52,7 +56,7 @@ export const WeatherCards = ({ data : {current} }) => {
           height='120'
         />
         <CardContent>
-          <Typography color='textSecondary' gutterBottom> Current Wind Speed </Typography>
+          <Typography color='h2' gutterBottom> Wind Speed </Typography>
           <Typography variant='h5'> {current.wind_speed} </Typography>
         </CardContent>
       </Grid>
@@ -63,7 +67,7 @@ export const WeatherCards = ({ data : {current} }) => {
           height='120'
         />
         <CardContent>
-          <Typography color='textSecondary' gutterBottom> Current Pressure </Typography>
+          <Typography color='h2' gutterBottom> Pressure </Typography>
           <Typography variant='h5'> {current.pressure} </Typography>
         </CardContent>
       </Grid>

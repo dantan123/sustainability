@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase'
   },
   card: {
-    marginRight: '12%',
+    marginRight: '2%',
     marginTop: '1%',
     marginBottom: '5%',
     height: '100%',
-    minWidth: '30%',
+    minWidth: '20%',
     opacity: '90%',
     borderBottom: '10px solid green',
     borderRadius: 16,
@@ -60,7 +60,7 @@ const MapCard = ({item}) => {
   };
 
   return (
-    <Grid item component={Card} xs={5} md={4} className={classes.card}>
+    <Grid item component={Card} xs={5} md={2} className={classes.card}>
       <CardActionArea className={classes.actionArea}>
         <CardMedia
           classes={mediaStyles}
@@ -103,7 +103,7 @@ const MapCard = ({item}) => {
 export const MapCards = () => {
   return (
     <div className={styles.container}>
-      <Grid container spacing={2} justify='left'>
+      <Grid container justify='left'>
         {
           CardData.map((item, index) => (
             <MapCard key={index} item={item} />
