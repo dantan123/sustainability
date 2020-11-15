@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase'
   },
   card: {
-    marginRight: '10%',
+    marginRight: '12%',
     marginTop: '1%',
     marginBottom: '5%',
     height: '100%',

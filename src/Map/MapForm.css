@@ -41,8 +41,8 @@ input[type="checkbox"]:checked::before {
 
 .map {
   margin-top: 1.5em;
-  width: 66vw;
-  height: 66vh;
+  width: 67vw;
+  height: 67vh;
   padding-left: 15vw;
   padding-bottom: 5vh;
 }

@@ -4,6 +4,7 @@ import {fetchData} from './WAPI';
 import {LineChart} from './lineChart';
 import {BarChart} from './barChart';
 import {PieChart} from './pieChart';
+import {WeatherCards} from './weatherCards';
 import './Weather.css';
 
 class Weather extends Component {
@@ -30,9 +31,9 @@ class Weather extends Component {
     return (
       <div className='page'>
         <h1 className="weatherHeading"> Vancouver Weather </h1>
+        <WeatherCards data={data}/>
 
         <div className="weatherContainer">
-
           <div className='weatherForecast'>
             <h2 className = 'chartHeading'> Current Weather Forecast </h2>
             <FormControl className="formPicker">
