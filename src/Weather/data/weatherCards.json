@@ -1,0 +1,22 @@
+[
+  {
+    "imageTitle": "temperature.png",
+    "title": "Current Temperature",
+    "field": "temp"
+  },
+  {
+    "imageTitle": "humidity.png",
+    "title": "Current Humidity",
+    "field": "humidity"
+  },
+  {
+    "imageTitle": "anemometer.png",
+    "title": "Current Wind Speed",
+    "field": "wind_speed"
+  },
+  {
+    "imageTitle": "barometer.png",
+    "title": "Current Pressure",
+    "field": "pressure"
+  }
+]
