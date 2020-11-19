@@ -6,10 +6,10 @@ class MapForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isPark: false,
-      isBike: false,
-      isBikeLayer: false,
-      isTrafficLayer: false
+      isPark: true,
+      isBike: true,
+      isBikeLayer: true,
+      isTrafficLayer: true
     }
     this.handleClick = this.handleClick.bind(this)
   }

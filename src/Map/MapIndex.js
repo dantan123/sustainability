@@ -8,8 +8,7 @@ function MapIndex() {
     <div className='mapContainer'>
       <h1 className="heading"> Sustainability Features </h1>
       <MapCards className='mapCards'/>
-      <br/>
-      <MapForm />
+      <MapForm className='mapForm'/>
       <br />
     </div>
   )

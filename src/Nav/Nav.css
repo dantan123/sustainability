@@ -2,16 +2,20 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 3vh;
+  min-height: 2vh;
   background: white;
   color: green;
   font-size: 1.5em;
   background: white;
 }
 
+.break {
+  margin: 0;
+}
+
 .navLogo {
-  width: 4.5em;
-  height: 4.5em;
+  width: 4em;
+  height: 4em;
 }
 
 .nav-links {

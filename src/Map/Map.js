@@ -25,7 +25,7 @@ function Map(props) {
 
   return (
     <GoogleMap
-      defaultZoom={10}
+      zoom={11.3}
       defaultCenter={{lat: 49.282730, lng: -123.120735}} // Vancouver lat and lng
       defaultOptions={{styles: mapStyles}}
     >
