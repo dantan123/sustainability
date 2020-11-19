@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {MapCards} from './MapCards'
 import MapForm from './MapForm'
 import './Map.css'

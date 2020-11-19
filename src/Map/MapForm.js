@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {WrappedMap} from './Map'
+import {Map} from './Map'
 import './MapForm.css'
 
 class MapForm extends Component {
@@ -71,11 +71,7 @@ class MapForm extends Component {
           </div>
         </form>
         <div className="map">
-          <WrappedMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization,geometry,drawing,places&key=AIzaSyBhxM-oXeYrmPjjRkr5I6HbrH-7gPYU-l0`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `100%` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
+          <Map
             isBike={this.state.isBike}
             isPark={this.state.isPark}
             isBikeLayer={this.state.isBikeLayer}
