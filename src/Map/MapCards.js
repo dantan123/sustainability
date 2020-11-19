@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: '90%',
     borderBottom: '10px solid green',
     borderRadius: 16,
-    boxShadow: 'none',
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     '&:hover': {
       boxShadow: `0 6px 12px 0 ${Color('black')
         .rotate(-12)
