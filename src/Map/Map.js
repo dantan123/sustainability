@@ -8,6 +8,17 @@ import {
   BicyclingLayer,
   TrafficLayer
 } from '@react-google-maps/api';
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
 import {formatRelative} from 'date-fns'
 import * as parksData from './data/parks.json'
 import * as bikePathData from './data/bikeways.json'
@@ -49,7 +60,7 @@ export const Map = (props) => {
   bikePathData.features.map((feature) => {
     const localCoordinates = feature.geometry.coordinates;
     for (var i = 0; i < localCoordinates.length; i++) {
-      // massaging the data; the input data have inconsistent array shapes
+      // massaging the data given that the input data have inconsistent array shapes
       if (localCoordinates[i][0].length === 2 || localCoordinates[i][1].length === 2) {
         heatMapData.push(new window.google.maps.LatLng(localCoordinates[i][0][1], localCoordinates[i][0][0]))
         heatMapData.push(new window.google.maps.LatLng(localCoordinates[i][1][1], localCoordinates[i][1][0]))
@@ -88,7 +99,7 @@ export const Map = (props) => {
         >
           <div>
             <h2> New Location </h2>
-            <p> selected @ {formatRelative(selected.time, new Date())} </p>
+            <p> selected {formatRelative(selected.time, new Date())} </p>
           </div>
         </InfoWindow>
       ) : null }
