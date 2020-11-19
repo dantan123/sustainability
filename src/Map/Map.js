@@ -8,17 +8,6 @@ import {
   BicyclingLayer,
   TrafficLayer
 } from '@react-google-maps/api';
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from "@reach/combobox";
 import {formatRelative} from 'date-fns'
 import * as parksData from './data/parks.json'
 import * as bikePathData from './data/bikeways.json'
