@@ -8,6 +8,17 @@ import {
   BicyclingLayer,
   TrafficLayer
 } from '@react-google-maps/api';
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng
+} from 'use-places-autocomplete';
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption
+} from '@reach/combobox';
 import {formatRelative} from 'date-fns'
 import * as parksData from './data/parks.json'
 import * as bikePathData from './data/bikeways.json'
@@ -18,6 +29,8 @@ const mapContainerStyle = {
   width: '72vw',
   height: '72vh'
 };
+const center = {lat: 49.282730, lng: -123.120735};
+const options = {styles: mapStyles, disableDefaultUI: true};
 
 export const Map = (props) => {
   const {isLoaded, loadError} = useLoadScript({
@@ -42,6 +55,11 @@ export const Map = (props) => {
     mapRef.current = map;
   }, []);
 
+  const panTo = useCallback(({lat, lng}) => {
+    mapRef.current.panTo({lat, lng});
+    mapRef.current.setZoom(15);
+  })
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
@@ -61,72 +79,124 @@ export const Map = (props) => {
   });
 
   return (
-    <GoogleMap
-      mapContainerStyle={mapContainerStyle}
-      zoom={11}
-      center={{lat: 49.282730, lng: -123.120735}} // Vancouver lat and lng
-      options={{styles: mapStyles}}
-      onClick={onMapClick}
-      onLoad={onMapLoad}
-    >
-      {markers.map(marker => (
-        <Marker
-          key={marker.time.toISOString()}
-          position={{lat: marker.lat, lng: marker.lng}}
-          icon={{
-            origin: new window.google.maps.Point(0,0),
-            anchor: new window.google.maps.Point(15,15)
-          }}
-          onClick={() => {setSelected(marker)}}
-        />
-      ))}
-
-      {selected ? (
-        <InfoWindow
-          position={{lat: selected.lat, lng: selected.lng}}
-          onCloseClick={() => {setSelected(null)}}
-        >
-          <div>
-            <h2> New Location </h2>
-            <p> selected {formatRelative(selected.time, new Date())} </p>
-          </div>
-        </InfoWindow>
-      ) : null }
-
-      {props.isPark ?
-        parksData.features.map(park => (
+    <div>
+      <Search panTo={panTo}/>
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={11}
+        center={center} // Vancouver lat and lng
+        options={options}
+        onClick={onMapClick}
+        onLoad={onMapLoad}
+      >
+        {markers.map(marker => (
           <Marker
-            key = {park.parkid}
-            position = {{
-              lat: park.geometry.coordinates[1],
-              lng: park.geometry.coordinates[0]
-            }}
-            onClick={() => setSelectedPark(park)}
+            key={marker.time.toISOString()}
+            position={{lat: marker.lat, lng: marker.lng}}
             icon={{
-              url: '/park.svg',
-              scaledSize: new window.google.maps.Size(25, 25)
+              origin: new window.google.maps.Point(0,0),
+              anchor: new window.google.maps.Point(15,15)
             }}
+            onClick={() => {setSelected(marker)}}
           />
-        ))
-      : null}
+        ))}
 
-      {props.isPark && selectedPark ? (
-        <InfoWindow
-          position = {{
-            lat: selectedPark.geometry.coordinates[1],
-            lng: selectedPark.geometry.coordinates[0]
-          }}
-          onCloseClick = {() => setSelectedPark(null)}
+        {selected ? (
+          <InfoWindow
+            position={{lat: selected.lat, lng: selected.lng}}
+            onCloseClick={() => {setSelected(null)}}
+          >
+            <div>
+              <h2> New Location </h2>
+              <p> selected {formatRelative(selected.time, new Date())} </p>
+            </div>
+          </InfoWindow>
+        ) : null }
+
+        {props.isPark ?
+          parksData.features.map(park => (
+            <Marker
+              key = {park.parkid}
+              position = {{
+                lat: park.geometry.coordinates[1],
+                lng: park.geometry.coordinates[0]
+              }}
+              onClick={() => setSelectedPark(park)}
+              icon={{
+                url: '/park.svg',
+                scaledSize: new window.google.maps.Size(25, 25)
+              }}
+            />
+          ))
+        : null}
+
+        {props.isPark && selectedPark ? (
+          <InfoWindow
+            position = {{
+              lat: selectedPark.geometry.coordinates[1],
+              lng: selectedPark.geometry.coordinates[0]
+            }}
+            onCloseClick = {() => setSelectedPark(null)}
+          >
+            <div>
+              <h1> {selectedPark.properties.name} </h1>
+            </div>
+          </InfoWindow>
+        ): null}
+
+        {props.isBike ? <HeatmapLayer data={heatMapData} /> : null}
+        {props.isBikeLayer ? <BicyclingLayer /> : null}
+        {props.isTrafficLayer ? <TrafficLayer /> : null}
+      </GoogleMap>
+    </div>
+  )
+}
+
+function Search({panTo}) {
+  const {
+    ready,
+    value,
+    suggestions: {status, data},
+    setValue,
+    clearSuggestions
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      location: {lat: () => 49.282730, lng: () => -123.120735},
+      radius: 200 * 1000,
+    }
+  })
+
+  return (
+    <div className='search'>
+      <Combobox
+        onSelect={async (address) => {
+          setValue(address, false);
+          clearSuggestions();
+          try {
+            const results = await getGeocode({address});
+            const {lat, lng} = await getLatLng(results[0]);
+            panTo({lat, lng});
+          } catch(error) {
+            console.log(error);
+          }
+        }}
+      >
+        <ComboboxInput
+          value={value}
+          onChange={(e) => {setValue(e.target.value)}}
+          disabled={!ready}
+          placeholder="Find out more about the metro park"
         >
-          <div>
-            <h1> {selectedPark.properties.name} </h1>
-          </div>
-        </InfoWindow>
-      ): null}
-
-      {props.isBike ? <HeatmapLayer data={heatMapData} /> : null}
-      {props.isBikeLayer ? <BicyclingLayer /> : null}
-      {props.isTrafficLayer ? <TrafficLayer /> : null}
-    </GoogleMap>
+        </ComboboxInput>
+        <ComboboxPopover>
+          <ComboboxList>
+          {status === 'OK' &&
+            data.map(({id, description}) => (
+              <ComboboxOption key={id} value={description} className='option'/>
+          ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    </div>
   )
 }

@@ -10,6 +10,23 @@
   margin-left: 15vw;
 }
 
+.search {
+  max-width: 400px;
+  padding: 1%;
+}
+
+.search input {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.option {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
 .desc {
   color: rgb(0, 255, 174);
   margin-left: 15vw;
