@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback} from 'react';
+import React, {useState, useRef, useCallback, useEffect} from 'react';
 import {
   useLoadScript,
   GoogleMap,
@@ -20,9 +20,10 @@ import {
   ComboboxOption
 } from '@reach/combobox';
 import {formatRelative} from 'date-fns'
-import * as parksData from './data/parks.json'
+// for testing: import * as parksData from './data/parks.json'
 import * as bikePathData from './data/bikeways.json'
 import mapStyles from './data/mapStyles';
+import axios from 'axios';
 
 const libraries = ["places", "visualization"];
 const mapContainerStyle = {
@@ -40,6 +41,19 @@ export const Map = (props) => {
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [selectedPark, setSelectedPark] = useState(null);
+  const [parkData, setParkData] = useState([]);
+
+  var url =`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.282730,-123.120735&radius=10000&type=park&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
+
+  const getParks = async () => {
+    const {data: {results}} = await axios.get(url);
+    setParkData(results);
+  };
+
+  useEffect(() => {
+    getParks();
+  }, [])
+
   const onMapClick = React.useCallback((event) => {
     setMarkers(current => [
       ...current,
@@ -50,6 +64,7 @@ export const Map = (props) => {
       }
     ])
   }, []);
+
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
@@ -71,8 +86,7 @@ export const Map = (props) => {
       if (localCoordinates[i][0].length === 2 || localCoordinates[i][1].length === 2) {
         heatMapData.push(new window.google.maps.LatLng(localCoordinates[i][0][1], localCoordinates[i][0][0]))
         heatMapData.push(new window.google.maps.LatLng(localCoordinates[i][1][1], localCoordinates[i][1][0]))
-      }
-      else {
+      } else {
         heatMapData.push(new window.google.maps.LatLng(localCoordinates[i][1], localCoordinates[i][0]))
       }
     }
@@ -82,6 +96,7 @@ export const Map = (props) => {
     <div>
       <Search panTo={panTo}/>
       <GoogleMap
+        className='map'
         mapContainerStyle={mapContainerStyle}
         zoom={11}
         center={center} // Vancouver lat and lng
@@ -101,25 +116,13 @@ export const Map = (props) => {
           />
         ))}
 
-        {selected ? (
-          <InfoWindow
-            position={{lat: selected.lat, lng: selected.lng}}
-            onCloseClick={() => {setSelected(null)}}
-          >
-            <div>
-              <h2> New Location </h2>
-              <p> selected {formatRelative(selected.time, new Date())} </p>
-            </div>
-          </InfoWindow>
-        ) : null }
-
         {props.isPark ?
-          parksData.features.map(park => (
+          parkData.map((park) => (
             <Marker
-              key = {park.parkid}
+              key = {park.place_id}
               position = {{
-                lat: park.geometry.coordinates[1],
-                lng: park.geometry.coordinates[0]
+                lat: park.geometry.location.lat,
+                lng: park.geometry.location.lng
               }}
               onClick={() => setSelectedPark(park)}
               icon={{
@@ -133,13 +136,13 @@ export const Map = (props) => {
         {props.isPark && selectedPark ? (
           <InfoWindow
             position = {{
-              lat: selectedPark.geometry.coordinates[1],
-              lng: selectedPark.geometry.coordinates[0]
+              lat: selectedPark.geometry.location.lat,
+              lng: selectedPark.geometry.location.lng
             }}
             onCloseClick = {() => setSelectedPark(null)}
           >
             <div>
-              <h1> {selectedPark.properties.name} </h1>
+              <h1> {selectedPark.name} </h1>
             </div>
           </InfoWindow>
         ): null}
@@ -181,6 +184,7 @@ function Search({panTo}) {
           }
         }}
       >
+
         <ComboboxInput
           value={value}
           onChange={(e) => {setValue(e.target.value)}}
@@ -188,7 +192,7 @@ function Search({panTo}) {
           placeholder="Find out more about the metro park"
         >
         </ComboboxInput>
-        <ComboboxPopover>
+        <ComboboxPopover portal={false}>
           <ComboboxList>
           {status === 'OK' &&
             data.map(({id, description}) => (
