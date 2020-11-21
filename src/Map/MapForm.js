@@ -8,8 +8,9 @@ class MapForm extends Component {
     this.state = {
       isPark: true,
       isBike: true,
+      isMuseum: true,
       isBikeLayer: true,
-      isTrafficLayer: true
+      isTrafficLayer: true,
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -34,6 +35,17 @@ class MapForm extends Component {
               checked={this.state.isPark}
               onClick={this.handleClick}
             /> Metro Parks
+            </span>
+          </div>
+          <br />
+          <div className="form-group">
+            <span>
+            <input
+              type="checkbox"
+              name="isMuseum"
+              checked={this.state.isMuseum}
+              onClick={this.handleClick}
+            /> Museums
             </span>
           </div>
           <br />
@@ -70,10 +82,12 @@ class MapForm extends Component {
             </span>
           </div>
         </form>
+
         <div className="map">
           <Map
             isBike={this.state.isBike}
             isPark={this.state.isPark}
+            isMuseum={this.state.isMuseum}
             isBikeLayer={this.state.isBikeLayer}
             isTrafficLayer={this.state.isTrafficLayer}
           />

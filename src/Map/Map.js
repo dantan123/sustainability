@@ -40,18 +40,33 @@ export const Map = (props) => {
   });
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [selectedPark, setSelectedPark] = useState(null);
   const [parkData, setParkData] = useState([]);
+  const [museumData, setMuseumData] = useState([]);
 
-  var url =`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.282730,-123.120735&radius=10000&type=park&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
-
-  const getParks = async () => {
+  const getData = async (type) => {
+    var url =`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.282730,-123.120735&radius=10000&type=${type}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
     const {data: {results}} = await axios.get(url);
-    setParkData(results);
+    if (type === 'park') {
+      setParkData(results);
+    }
+    if (type === 'museum') {
+      setMuseumData(results);
+    }
   };
 
+  const types = [];
+  if (props.isPark) {
+    types.push('park');
+  }
+
+  if (props.isMuseum) {
+    types.push('museum');
+  }
+
   useEffect(() => {
-    getParks();
+    types.forEach(type => {
+      getData(type);
+    });
   }, [])
 
   const onMapClick = React.useCallback((event) => {
@@ -124,7 +139,7 @@ export const Map = (props) => {
                 lat: park.geometry.location.lat,
                 lng: park.geometry.location.lng
               }}
-              onClick={() => setSelectedPark(park)}
+              onClick={() => setSelected(park)}
               icon={{
                 url: '/park.svg',
                 scaledSize: new window.google.maps.Size(25, 25)
@@ -133,20 +148,37 @@ export const Map = (props) => {
           ))
         : null}
 
-        {selectedPark && props.isPark ? (
+        {props.isMuseum ?
+          museumData.map((museum) => (
+            <Marker
+              key = {museum.place_id}
+              position = {{
+                lat: museum.geometry.location.lat,
+                lng: museum.geometry.location.lng
+              }}
+              onClick={() => setSelected(museum)}
+              icon={{
+                url: '/museum.svg',
+                scaledSize: new window.google.maps.Size(25, 25)
+              }}
+            />
+          ))
+        : null}
+
+        {selected ? (
           <InfoWindow
             position = {{
-              lat: selectedPark.geometry.location.lat,
-              lng: selectedPark.geometry.location.lng
+              lat: selected.geometry.location.lat,
+              lng: selected.geometry.location.lng
             }}
-            onCloseClick = {() => setSelectedPark(null)}
+            onCloseClick = {() => setSelected(null)}
           >
             <div>
-              <h1> {selectedPark.name} </h1>
-              <p> Address: {selectedPark.vicinity} </p>
-              <p> Rating: {selectedPark.rating} </p>
-              <p> {selectedPark.opening_hours &&
-                selectedPark.opening_hours.open_now ? '': 'Not'} open </p>
+              <h1> {selected.name} </h1>
+              <p> Address: {selected.vicinity} </p>
+              <p> Rating: {selected.rating} </p>
+              <p> {selected.opening_hours &&
+                selected.opening_hours.open_now ? '': 'Not'} open </p>
             </div>
           </InfoWindow>
         ): null}
