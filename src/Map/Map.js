@@ -131,7 +131,6 @@ export const LabelledMap = (props) => {
               origin: new window.google.maps.Point(0,0),
               anchor: new window.google.maps.Point(15,15)
             }}
-            onClick={() => {setSelected(marker)}}
           />
         ))}
 
