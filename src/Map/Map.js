@@ -39,12 +39,13 @@ export const LabelledMap = (props) => {
     libraries,
   });
 
-  const types = ['park', 'museum', 'subway_station'];
+  const types = ['park', 'museum', 'subway_station', 'bicycle_store'];
   //const [allData, setAllData] = useState(new Map());
   const [selected, setSelected] = useState(null);
   const [parkData, setParkData] = useState([]);
   const [museumData, setMuseumData] = useState([]);
   const [subwayData, setSubwayData] = useState([]);
+  const [bikeStoreData, setBikeStoreData] = useState([]);
   const [markers, setMarkers] = useState([]);
 
   const updateData = (key, value) => {
@@ -57,6 +58,8 @@ export const LabelledMap = (props) => {
       setMuseumData(value);
     } else if (key === 'subway_station') {
       setSubwayData(value);
+    } else if (key === 'bicycle_store') {
+      setBikeStoreData(value);
     }
   }
 
@@ -185,6 +188,23 @@ export const LabelledMap = (props) => {
           ))
         : null }
 
+        {bikeStoreData && props.isBikeStore?
+          bikeStoreData.map((place) => (
+            <Marker
+              key = {place.place_id}
+              position = {{
+                lat: place.geometry.location.lat,
+                lng: place.geometry.location.lng
+              }}
+              onClick={() => setSelected(place)}
+              icon={{
+                url: '/bicycle.svg',
+                scaledSize: new window.google.maps.Size(30, 30)
+              }}
+            />
+          ))
+        : null }
+
         {selected ? (
           <InfoWindow
             position = {{
@@ -204,7 +224,6 @@ export const LabelledMap = (props) => {
         ): null}
 
         {props.isBike ? <HeatmapLayer data={heatMapData} /> : null}
-        {props.isBikeLayer ? <BicyclingLayer /> : null}
         {props.isTrafficLayer ? <TrafficLayer /> : null}
       </GoogleMap>
     </div>
@@ -245,7 +264,7 @@ function Search({panTo}) {
           value={value}
           onChange={(e) => {setValue(e.target.value)}}
           disabled={!ready}
-          placeholder="Find a place"
+          placeholder="Search a place!!"
         >
         </ComboboxInput>
         <ComboboxPopover portal={false}>

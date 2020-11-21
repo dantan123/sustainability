@@ -1,6 +1,6 @@
 .form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   margin-left: 15vw;
   font-size: 1.5em;
   font-weight: bold;
@@ -8,6 +8,7 @@
 }
 
 .form-group {
+  max-width: 500px;
   margin-bottom: 3%;
 }
 

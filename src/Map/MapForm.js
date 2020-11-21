@@ -8,9 +8,9 @@ class MapForm extends Component {
     this.state = {
       isPark: true,
       isBike: true,
+      isBikeStore: true,
       isMuseum: true,
       isSubway: true,
-      isBikeLayer: true,
       isTrafficLayer: true,
     }
     this.handleClick = this.handleClick.bind(this)
@@ -35,7 +35,7 @@ class MapForm extends Component {
               name="isPark"
               checked={this.state.isPark}
               onClick={this.handleClick}
-            /> Metro Parks
+            /> Parks
             </span>
           </div>
           <br />
@@ -47,6 +47,17 @@ class MapForm extends Component {
               checked={this.state.isMuseum}
               onClick={this.handleClick}
             /> Museums
+            </span>
+          </div>
+          <br />
+          <div className="form-group">
+            <span>
+            <input
+              type="checkbox"
+              name="isBikeStore"
+              checked={this.state.isBikeStore}
+              onClick={this.handleClick}
+            /> Bike Stores
             </span>
           </div>
           <br />
@@ -68,18 +79,7 @@ class MapForm extends Component {
               name="isSubway"
               checked={this.state.isSubway}
               onClick={this.handleClick}
-            /> Subway Stations
-            </span>
-          </div>
-          <br />
-          <div className="form-group">
-            <span>
-            <input
-              type="checkbox"
-              name="isBikeLayer"
-              checked={this.state.isBikeLayer}
-              onClick={this.handleClick}
-            /> Bike Lane Layer
+            /> Subway
             </span>
           </div>
           <br />
@@ -90,17 +90,17 @@ class MapForm extends Component {
               name="isTrafficLayer"
               checked={this.state.isTrafficLayer}
               onClick={this.handleClick}
-            /> Traffic Layer
+            /> Driving
             </span>
           </div>
         </form>
         <div className="map">
           <LabelledMap
             isBike={this.state.isBike}
+            isBikeStore={this.state.isBikeStore}
             isPark={this.state.isPark}
             isMuseum={this.state.isMuseum}
             isSubway={this.state.isSubway}
-            isBikeLayer={this.state.isBikeLayer}
             isTrafficLayer={this.state.isTrafficLayer}
           />
         </div>
