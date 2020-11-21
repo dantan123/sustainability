@@ -133,7 +133,7 @@ export const Map = (props) => {
           ))
         : null}
 
-        {props.isPark && selectedPark ? (
+        {selectedPark && props.isPark ? (
           <InfoWindow
             position = {{
               lat: selectedPark.geometry.location.lat,
@@ -143,6 +143,10 @@ export const Map = (props) => {
           >
             <div>
               <h1> {selectedPark.name} </h1>
+              <p> Address: {selectedPark.vicinity} </p>
+              <p> Rating: {selectedPark.rating} </p>
+              <p> {selectedPark.opening_hours &&
+                selectedPark.opening_hours.open_now ? '': 'Not'} open </p>
             </div>
           </InfoWindow>
         ): null}
