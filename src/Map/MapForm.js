@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Map} from './Map'
+import {LabelledMap} from './Map'
 import './MapForm.css'
 
 class MapForm extends Component {
@@ -9,6 +9,7 @@ class MapForm extends Component {
       isPark: true,
       isBike: true,
       isMuseum: true,
+      isSubway: true,
       isBikeLayer: true,
       isTrafficLayer: true,
     }
@@ -64,6 +65,17 @@ class MapForm extends Component {
             <span>
             <input
               type="checkbox"
+              name="isSubway"
+              checked={this.state.isSubway}
+              onClick={this.handleClick}
+            /> Subway Stations
+            </span>
+          </div>
+          <br />
+          <div className="form-group">
+            <span>
+            <input
+              type="checkbox"
               name="isBikeLayer"
               checked={this.state.isBikeLayer}
               onClick={this.handleClick}
@@ -82,12 +94,12 @@ class MapForm extends Component {
             </span>
           </div>
         </form>
-
         <div className="map">
-          <Map
+          <LabelledMap
             isBike={this.state.isBike}
             isPark={this.state.isPark}
             isMuseum={this.state.isMuseum}
+            isSubway={this.state.isSubway}
             isBikeLayer={this.state.isBikeLayer}
             isTrafficLayer={this.state.isTrafficLayer}
           />

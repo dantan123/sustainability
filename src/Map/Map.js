@@ -33,40 +33,44 @@ const mapContainerStyle = {
 const center = {lat: 49.282730, lng: -123.120735};
 const options = {styles: mapStyles, disableDefaultUI: true};
 
-export const Map = (props) => {
+export const LabelledMap = (props) => {
   const {isLoaded, loadError} = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const [markers, setMarkers] = useState([]);
+
+  const types = ['park', 'museum', 'subway_station'];
+  //const [allData, setAllData] = useState(new Map());
   const [selected, setSelected] = useState(null);
   const [parkData, setParkData] = useState([]);
   const [museumData, setMuseumData] = useState([]);
+  const [subwayData, setSubwayData] = useState([]);
+  const [markers, setMarkers] = useState([]);
 
-  const getData = async (type) => {
-    var url =`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.282730,-123.120735&radius=10000&type=${type}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
-    const {data: {results}} = await axios.get(url);
-    if (type === 'park') {
-      setParkData(results);
+  const updateData = (key, value) => {
+    //setAllData(prev => new Map(
+      //[...prev, [key, value]]
+    //))
+    if (key === 'park') {
+      setParkData(value);
+    } else if (key === 'museum') {
+      setMuseumData(value);
+    } else if (key === 'subway_station') {
+      setSubwayData(value);
     }
-    if (type === 'museum') {
-      setMuseumData(results);
+  }
+
+  const getData = async (types) => {
+    for (const type of types) {
+      var url =`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.282730,-123.120735&radius=10000&type=${type}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+      const {data: {results}} = await axios.get(url);
+      updateData(type, results);
     }
+    // console.log(allData);
   };
 
-  const types = [];
-  if (props.isPark) {
-    types.push('park');
-  }
-
-  if (props.isMuseum) {
-    types.push('museum');
-  }
-
   useEffect(() => {
-    types.forEach(type => {
-      getData(type);
-    });
+    getData(types);
   }, [])
 
   const onMapClick = React.useCallback((event) => {
@@ -93,7 +97,7 @@ export const Map = (props) => {
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
-  let heatMapData = []
+  let heatMapData = [];
   bikePathData.features.map((feature) => {
     const localCoordinates = feature.geometry.coordinates;
     for (var i = 0; i < localCoordinates.length; i++) {
@@ -131,39 +135,56 @@ export const Map = (props) => {
           />
         ))}
 
-        {props.isPark ?
-          parkData.map((park) => (
+        {parkData && props.isPark ?
+          parkData.map((place) => (
             <Marker
-              key = {park.place_id}
+              key = {place.place_id}
               position = {{
-                lat: park.geometry.location.lat,
-                lng: park.geometry.location.lng
+                lat: place.geometry.location.lat,
+                lng: place.geometry.location.lng
               }}
-              onClick={() => setSelected(park)}
+              onClick={() => setSelected(place)}
               icon={{
                 url: '/park.svg',
                 scaledSize: new window.google.maps.Size(25, 25)
               }}
             />
           ))
-        : null}
+        : null }
 
-        {props.isMuseum ?
-          museumData.map((museum) => (
+        {museumData && props.isMuseum ?
+          museumData.map((place) => (
             <Marker
-              key = {museum.place_id}
+              key = {place.place_id}
               position = {{
-                lat: museum.geometry.location.lat,
-                lng: museum.geometry.location.lng
+                lat: place.geometry.location.lat,
+                lng: place.geometry.location.lng
               }}
-              onClick={() => setSelected(museum)}
+              onClick={() => setSelected(place)}
               icon={{
                 url: '/museum.svg',
                 scaledSize: new window.google.maps.Size(25, 25)
               }}
             />
           ))
-        : null}
+        : null }
+
+        {subwayData && props.isSubway ?
+          subwayData.map((place) => (
+            <Marker
+              key = {place.place_id}
+              position = {{
+                lat: place.geometry.location.lat,
+                lng: place.geometry.location.lng
+              }}
+              onClick={() => setSelected(place)}
+              icon={{
+                url: '/subway.svg',
+                scaledSize: new window.google.maps.Size(25, 25)
+              }}
+            />
+          ))
+        : null }
 
         {selected ? (
           <InfoWindow
@@ -225,7 +246,7 @@ function Search({panTo}) {
           value={value}
           onChange={(e) => {setValue(e.target.value)}}
           disabled={!ready}
-          placeholder="Find out more about the metro park"
+          placeholder="Find a place"
         >
         </ComboboxInput>
         <ComboboxPopover portal={false}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom' //might use it
-import Map from './Map/MapIndex'
+import LabelledMap from './Map/MapIndex'
 import Cards from './Cards/Cards'
 import Nav from './Nav/Nav'
 import Weather from './Weather/Weather'
@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-            <Route path='/' exact component={Map}/>
+            <Route path='/' exact component={LabelledMap}/>
             <Route path='/weather' exact component={Weather}/>
             <Route path='/quiz' exact component={Cards}/>
         </Switch>
